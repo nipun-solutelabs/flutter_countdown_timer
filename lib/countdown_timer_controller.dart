@@ -47,9 +47,11 @@ class CountdownTimerController extends ChangeNotifier {
     _isRunning = true;
     disposeTimer();
     _countdownPeriodicEvent();
-    _countdownTimer = Timer.periodic(intervals, (timer) {
-      _countdownPeriodicEvent();
-    });
+    if (_isRunning) {
+      _countdownTimer = Timer.periodic(intervals, (timer) {
+        _countdownPeriodicEvent();
+      });
+    }
   }
 
   ///Check if the countdown is over and issue a notification.
